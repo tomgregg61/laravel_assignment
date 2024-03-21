@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-use Illuminate\Http\Response;
+use Illuminate\View\View;
 use App\Models\Chirp;
 use Illuminate\Http\Request;
 
