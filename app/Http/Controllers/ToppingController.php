@@ -12,7 +12,7 @@ class ToppingController extends Controller
      */
     public function index()
     {
-        $toppings = Topping::all();  // Get all pizzas from the database
+        $toppings = Topping::all();
         return view('toppings.index', compact('toppings'));
     }
 

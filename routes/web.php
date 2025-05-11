@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PizzaController;
 use App\Http\Controllers\ToppingController;
+use App\Http\Controllers\OrderController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -31,5 +32,12 @@ Route::middleware('auth')->group(function () {
 
 Route::get('/pizzas', [PizzaController::class, 'index'])->name('pizzas.index');
 Route::get('/toppings', [ToppingController::class, 'index'])->name('toppings.index');
+Route::middleware(['auth'])->group(function () {
+    Route::get('/orders/create', [OrderController::class, 'create'])->name('orders.create');
+    Route::post('/orders/add', [OrderController::class, 'addPizza'])->name('orders.addPizza');
+    Route::post('/orders/submit', [OrderController::class, 'submit'])->name('orders.submit');
+    Route::get('/orders/{order}', [OrderController::class, 'show'])->name('orders.show');
+    Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
+});
 
 require __DIR__ . '/auth.php';

@@ -21,6 +21,14 @@
                     <x-nav-link :href="route('toppings.index')" :active="request()->routeIs('toppings.index')">
                         {{ __('Toppings') }}
                     </x-nav-link>
+                    @if(Auth::check())
+                    <x-nav-link :href="route('orders.index')" :active="request()->routeIs('orders.index')">
+                        {{ __('Orders') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('orders.create')" :active="request()->routeIs('orders.create')">
+                        {{ __('Create Order') }}
+                    </x-nav-link>
+                    @endif
                 </div>
             </div>
 
@@ -87,6 +95,14 @@
             <x-responsive-nav-link :href="route('toppings.index')" :active="request()->routeIs('toppings.index')">
                 {{ __('Toppings') }}
             </x-responsive-nav-link>
+            @if(Auth::check())
+            <x-responsive-nav-link :href="route('orders.index')" :active="request()->routeIs('orders.index')">
+                {{ __('Orders') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link> :href="route('orders.create')" :active="request()->routeIs('orders.create')">
+                {{ __('Create Order') }}
+            </x-responsive-nav-link>>
+            @endif
         </div>
 
         <!-- Responsive Settings Options -->

@@ -2,22 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Pizza;
+use App\Models\OrderItem;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
-use Illuminate\View\View;
-use Illuminate\Http\RedirectResponse;
 
-
-class PizzaController extends Controller
+class OrderItemController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $pizzas = Pizza::all();
-        return view('pizzas.index', compact('pizzas'));
+        //
     }
 
     /**
@@ -31,21 +26,15 @@ class PizzaController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request): RedirectResponse
+    public function store(Request $request)
     {
-        $validated = $request->validate([
-            'message' => 'required|string|max:255',
-        ]);
-
-        $request->user()->pizzas()->create($validated);
-
-        return redirect(route('pizzas.index'));
+        //
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Pizza $pizza)
+    public function show(OrderItem $order_Item)
     {
         //
     }
@@ -53,7 +42,7 @@ class PizzaController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Pizza $pizza)
+    public function edit(OrderItem $order_Item)
     {
         //
     }
@@ -61,7 +50,7 @@ class PizzaController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Pizza $pizza)
+    public function update(Request $request, OrderItem $order_Item)
     {
         //
     }
@@ -69,7 +58,7 @@ class PizzaController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Pizza $pizza)
+    public function destroy(OrderItem $order_Item)
     {
         //
     }
