@@ -1,22 +1,25 @@
 <x-app-layout>
-    <div class="max-w-7xl mx-auto p-4 sm:p-6 lg:p-8">
-        <h1 class="text-2xl font-semibold">Order #{{ $order->id }} Details</h1>
+    <div class="max-w-4xl mx-auto p-4">
+        <h2 class="text-2xl font-bold mb-4">Order Details</h2>
 
-        <p class="mt-4">Total Price: £{{ number_format($order->total_price, 2) }}</p>
+        <div class="bg-white p-4 rounded shadow-lg">
+            <h3 class="text-xl font-semibold mb-2">Order #{{ $order->id }}</h3>
+            <p><strong>Status:</strong> {{ $order->status }}</p>
+            <p><strong>Total Price:</strong> £{{ number_format($order->total_price, 2) }}</p>
+            <p><strong>Order Type:</strong> {{ ucfirst($order->order_type) }}</p>
 
-        <h2 class="mt-6 text-lg font-semibold">Items:</h2>
-        <ul class="mt-4">
-            @foreach ($order->items as $item)
-            <li class="mb-2">
-                <p>Pizza: {{ $item->pizza->name }}</p>
+            <h4 class="text-lg mt-4 mb-2">Ordered Items</h4>
+            @foreach($order->items as $item)
+            <div>
+                <p>{{ $item->pizza->name }} - £{{ number_format($item->price, 2) }}</p>
                 <p>Toppings: {{ implode(', ', json_decode($item->toppings)) }}</p>
-                <p>Price: £{{ number_format($item->price, 2) }}</p>
-            </li>
+            </div>
             @endforeach
-        </ul>
 
-        <div class="mt-6">
-            <a href="{{ route('orders.index') }}" class="text-blue-500 hover:text-blue-700">Back to Orders</a>
+            <form method="POST" action="{{ route('orders.reorder', $order->id) }}" class="mt-4">
+                @csrf
+                <button type="submit" class="bg-green-500 text-white py-2 px-4 rounded">Re-order</button>
+            </form>
         </div>
     </div>
 </x-app-layout>

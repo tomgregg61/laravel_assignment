@@ -116,10 +116,33 @@ class OrderController extends Controller
      * Remove the specified resource from storage.
      */ public function cancel()
     {
-        // Clear the session data for the order
         session()->forget('order');
 
-        // Redirect back to the order creation page
         return redirect()->route('orders.create');
+    }
+
+    public function reorder($orderId)
+    {
+        $order = Order::findOrFail($orderId);
+
+        if ($order->user_id !== auth()->id()) {
+            return redirect()->route('orders.index')->with('error', 'Unauthorized access');
+        }
+
+        $orderItems = [];
+
+        foreach ($order->items as $item) {
+            $orderItems[] = [
+                'pizza_id' => $item->pizza_id,
+                'name' => $item->pizza->name,
+                'size' => $item->size,
+                'toppings' => json_decode($item->toppings),
+                'price' => $item->price
+            ];
+        }
+
+        session()->put('order.items', $orderItems);
+
+        return redirect()->route('orders.create')->with('success', 'Order items added to cart.');
     }
 }
