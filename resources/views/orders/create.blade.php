@@ -67,6 +67,13 @@
                 @else
                 <p>No items added to the order yet.</p>
                 @endif
+                <!-- Cancel Order Button -->
+                @if(session()->has('order.items'))
+                <form method="POST" action="{{ route('orders.cancel') }}" class="mt-4">
+                    @csrf
+                    <button type="submit" class="bg-red-500 text-white py-1 px-3 rounded">Cancel Order</button>
+                </form>
+                @endif
             </div>
         </div>
     </div>

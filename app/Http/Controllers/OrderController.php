@@ -114,9 +114,12 @@ class OrderController extends Controller
 
     /**
      * Remove the specified resource from storage.
-     */
-    public function destroy(Order $order)
+     */ public function cancel()
     {
-        //
+        // Clear the session data for the order
+        session()->forget('order');
+
+        // Redirect back to the order creation page
+        return redirect()->route('orders.create');
     }
 }

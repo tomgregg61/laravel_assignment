@@ -38,6 +38,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/orders/submit', [OrderController::class, 'submit'])->name('orders.submit');
     Route::get('/orders/{order}', [OrderController::class, 'show'])->name('orders.show');
     Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
+    Route::post('/orders/cancel', [OrderController::class, 'cancel'])->name('orders.cancel');
 });
 
 require __DIR__ . '/auth.php';
