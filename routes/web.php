@@ -2,7 +2,8 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\PizzaController;
+use App\Http\Controllers\ToppingController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -28,4 +29,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+Route::get('/pizzas', [PizzaController::class, 'index'])->name('pizzas.index');
+Route::get('/toppings', [ToppingController::class, 'index'])->name('toppings.index');
+
+require __DIR__ . '/auth.php';
