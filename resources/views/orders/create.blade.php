@@ -14,7 +14,7 @@
 
                     <div>
                         <label>
-                            <input type="radio" name="size" value="small">
+                            <input type="radio" name="size" value="small" checked="checked">
                             Small - £{{ number_format($pizza->small_price, 2) }}
                         </label>
                     </div>
